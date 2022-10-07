@@ -1,6 +1,5 @@
 package personal.sns.model.entity;
 
-import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

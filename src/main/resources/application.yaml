@@ -8,6 +8,12 @@ spring.jpa:
 spring.datasource:
     hikari:
       maximum-pool-size: 4
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: meri165da89*
+    url: jdbc:postgresql://ec2-52-21-136-176.compute-1.amazonaws.com/d998trcjfslpcj
+    username: fktneroekxrbfr
+    password: b13b261a6096d4c57b9728609d41cc6a920da3a729a0e48d4de0d0a44cf6600a
+    driver-class-name: org.postgresql.Driver
+
+jwt:
+  secret-key: hans-sns-application-2022.secret_key
+  # 30 days
+  token.expired-time-ms: 2592000000
