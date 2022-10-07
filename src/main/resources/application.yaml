@@ -8,6 +8,6 @@ spring.jpa:
 spring.datasource:
     hikari:
       maximum-pool-size: 4
-    url:
-    username:
-    password:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: meri165da89*
