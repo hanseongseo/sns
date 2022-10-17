@@ -92,4 +92,9 @@ public class PostService {
         // like save
         likeEntityRepository.save(LikeEntity.of(userEntity, postEntity));
     }
+
+    @Transactional
+    public int likeCount(Integer postId) {
+        return likeEntityRepository.countLikeEntitiesByPostId(postId);
+    }
 }
