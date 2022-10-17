@@ -5,8 +5,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import personal.sns.controller.request.PostCommentRequest;
 import personal.sns.controller.request.PostCreateRequest;
 import personal.sns.controller.request.PostModifyRequest;
+import personal.sns.controller.response.CommentResponse;
 import personal.sns.controller.response.PostResponse;
 import personal.sns.controller.response.Response;
 import personal.sns.model.Post;
@@ -23,7 +25,6 @@ public class PostController {
 
     @PostMapping
     public Response<Void> create(@RequestBody PostCreateRequest request, Authentication authentication) {
-
         postService.create(request.getTitle(), request.getBody(), authentication.getName());
         return Response.success();
     }
@@ -59,5 +60,16 @@ public class PostController {
     @GetMapping("/{postId}/likes")
     public Response<Integer> likeCount(@PathVariable Integer postId, Authentication authentication) {
         return Response.success(postService.likeCount(postId));
+    }
+
+    @PostMapping("/{postId}/comments")
+    public Response<Void> comment(@PathVariable Integer postId, @RequestBody PostCommentRequest request, Authentication authentication) {
+        postService.comment(postId, authentication.getName(), request.getComment());
+        return Response.success();
+    }
+
+    @GetMapping("/{postId}/comments")
+    public Response<Page<CommentResponse>> comment(@PathVariable Integer postId, Pageable pageable, Authentication authentication) {
+        return Response.success(postService.getComments(postId, pageable).map(CommentResponse::fromComment));
     }
 }

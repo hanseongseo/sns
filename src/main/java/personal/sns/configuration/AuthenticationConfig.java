@@ -41,7 +41,6 @@ public class AuthenticationConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new JwtTokenFilter(key, userService), UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling()
                 .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
-
                 ;
     }
 }
