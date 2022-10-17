@@ -12,6 +12,8 @@ import personal.sns.controller.response.Response;
 import personal.sns.model.Post;
 import personal.sns.service.PostService;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/posts")
@@ -46,5 +48,11 @@ public class PostController {
     @GetMapping("/my")
     public Response<Page<PostResponse>> myList(Pageable pageable, Authentication authentication) {
         return Response.success(postService.my(authentication.getName(), pageable).map(PostResponse::fromPost));
+    }
+
+    @PostMapping("/{postId}/likes")
+    public Response<Void> like(@PathVariable Integer postId, Authentication authentication) {
+        postService.like(postId, authentication.getName());
+        return Response.success();
     }
 }
