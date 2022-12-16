@@ -6,8 +6,7 @@ import personal.sns.model.User;
 
 @Getter
 @AllArgsConstructor
-public
-class UserResponse {
+public class UserResponse {
     private Integer id;
     private String userName;
 
